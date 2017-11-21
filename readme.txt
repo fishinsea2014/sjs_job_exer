@@ -1,10 +1,9 @@
 Deploying tips:
 1. Install node.js
 2. Install gulp by "npm i -g gulp"
-3. Install bower by "npm install -g bower"
-3. Run "bower install"
-4. Run "gulp" to start the project.
-5. View "http://localhost:3000/" in browser.
+3. Run 'json-server src/data/db.json' to start json server
+3. Run "gulp" to start the project.
+4. View "http://localhost:3003/" in browser.
 
 Directory structure:
 1. "src" is source codes.

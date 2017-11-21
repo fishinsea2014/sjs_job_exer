@@ -1,21 +1,51 @@
 <!DOCTYPE html>
 <!--Reference angular module 'app'-->
-<html lang="en" ng-app="app">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
-  <title>Boat service management</title>
+    <script src="vendor/angular/angular.min.js" charset="utf-8"></script>
+
+    <title>Boat service management</title>
 </head>
 <body>
-  <div ui-view>
+    Boat service management
+    <div ng-app="webapp" ng-controller="siteCtrl">
 
-  </div>
-  <!--Set the font by responsive screen size -->
-  <script type="text/javascript">
-    document.getElementsByTagName('html')[0].style.fontSize = window.screen.width / 10 + 'px';
-  </script>
-  <script src="vendor/angular/angular.min.js" charset="utf-8"></script>
-  <script src="vendor/angular-ui-router/release/angular-ui-router.min.js" charset="utf-8"></script>
-  <script src="js/index.js" charset="utf-8"></script>
+        <ul>
+            <li ng-repeat="x in names">
+                {{ x.name + ', ' + x.type }}
+            </li>
+        </ul>
+
+    </div>
+
+    <script>
+      var app = angular.module('webapp', []);
+
+      app.controller('siteCtrl', function($scope, $http) {
+        $http({
+          method: 'GET',
+          url: 'http://localhost:3000/boats'
+        }).then(function successCallback(response) {
+          $scope.names = response.data.sites;
+        }, function errorCallback(response) {
+          // codes when failure
+        });
+
+      });
+    </script>
+
+<!--Trying to use requirejs to do the project, but failed.-->
+<!--<div class="main">-->
+        <!--<div class="header">-->
+            <!--<div class="right-bar">-->
+                <!--<span class="welcome">User<b>...</b> <button class="btn btn-info btn-xs"><i class="fa fa-sign-out"></i> Logout</button></span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="mainContent  has-shadow">-->
+            <!--<div ng-view></div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<script data-main="js/index.js" src="vendor/requirejs/require.js"></script>-->
 </body>
 </html>
